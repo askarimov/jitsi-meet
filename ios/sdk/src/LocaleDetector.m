@@ -34,7 +34,15 @@ RCT_EXPORT_MODULE();
 }
 
 - (NSDictionary *)constantsToExport {
-    return @{ @"locale": [[NSLocale preferredLanguages] objectAtIndex:0] };
+
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    // getting an NSString
+    NSString *currentLocale = [prefs stringForKey:@"locale"];
+    if (currentLocale != nil) {
+        return @{ @"locale": currentLocale };
+    } else {
+        return @{ @"locale": [[NSLocale preferredLanguages] objectAtIndex:0] };
+    }
 }
 
 @end

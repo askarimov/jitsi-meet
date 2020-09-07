@@ -127,22 +127,22 @@ class OverflowMenu extends PureComponent<Props, State> {
                 onSwipe = { this._onSwipe }
                 renderHeader = { this._renderMenuExpandToggle }>
                 <AudioRouteButton { ...buttonProps } />
-                <InviteButton { ...buttonProps } />
-                <AudioOnlyButton { ...buttonProps } />
+                {/* <InviteButton { ...buttonProps } /> */}
+                {/* <AudioOnlyButton { ...buttonProps } /> */}
                 <RaiseHandButton { ...buttonProps } />
-                <LobbyModeButton { ...buttonProps } />
-                <MoreOptionsButton { ...moreOptionsButtonProps } />
-                <Collapsible collapsed = { !showMore }>
+                {/* <LobbyModeButton { ...buttonProps } /> */}
+                {/* <MoreOptionsButton { ...moreOptionsButtonProps } /> */}
+                {/* <Collapsible collapsed = { !showMore }> */}
                     <ToggleCameraButton { ...buttonProps } />
                     <TileViewButton { ...buttonProps } />
-                    <RecordButton { ...buttonProps } />
-                    <LiveStreamButton { ...buttonProps } />
-                    <VideoShareButton { ...buttonProps } />
-                    <RoomLockButton { ...buttonProps } />
-                    <ClosedCaptionButton { ...buttonProps } />
-                    <SharedDocumentButton { ...buttonProps } />
-                    <HelpButton { ...buttonProps } />
-                </Collapsible>
+                    {/* <RecordButton { ...buttonProps } /> */}
+                    {/* <LiveStreamButton { ...buttonProps } /> */}
+                    {/* <VideoShareButton { ...buttonProps } /> */}
+                    {/* <RoomLockButton { ...buttonProps } /> */}
+                    {/* <ClosedCaptionButton { ...buttonProps } /> */}
+                    {/* <SharedDocumentButton { ...buttonProps } /> */}
+                    {/* <HelpButton { ...buttonProps } /> */}
+                {/* </Collapsible> */}
             </BottomSheet>
         );
     }

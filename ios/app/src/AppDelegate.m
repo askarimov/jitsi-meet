@@ -39,7 +39,7 @@
         [builder setFeatureFlag:@"resolution" withValue:@(360)];
         builder.serverURL = [NSURL URLWithString:@"https://meet.jit.si"];
         builder.welcomePageEnabled = YES;
-
+      builder.currentLocale = @"kk";
         // Apple rejected our app because they claim requiring a
         // Dropbox account for recording is not acceptable.
 #if DEBUG

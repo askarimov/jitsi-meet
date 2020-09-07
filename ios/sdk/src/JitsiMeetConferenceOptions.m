@@ -30,6 +30,7 @@ static NSString *const WelcomePageEnabledFeatureFlag = @"welcomepage.enabled";
     NSNumber *_audioMuted;
     NSNumber *_videoMuted;
     NSMutableDictionary *_featureFlags;
+    NSString *_currentLocale;
 }
 
 @dynamic audioOnly;
@@ -52,6 +53,7 @@ static NSString *const WelcomePageEnabledFeatureFlag = @"welcomepage.enabled";
         _videoMuted = nil;
 
         _userInfo = nil;
+        _currentLocale = nil;
     }
     
     return self;
@@ -116,6 +118,10 @@ static NSString *const WelcomePageEnabledFeatureFlag = @"welcomepage.enabled";
     return _videoMuted;
 }
 
+- (NSString *)currentLocale {
+    return _currentLocale;
+}
+
 @end
 
 @implementation JitsiMeetConferenceOptions {
@@ -168,6 +174,11 @@ static NSString *const WelcomePageEnabledFeatureFlag = @"welcomepage.enabled";
         _featureFlags = [NSDictionary dictionaryWithDictionary:builder.featureFlags];
 
         _userInfo = builder.userInfo;
+        _currentLocale = builder.currentLocale;
+        
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setValue:_currentLocale forKey:@"locale"];
+        [defaults synchronize];
     }
 
     return self;
@@ -231,7 +242,11 @@ static NSString *const WelcomePageEnabledFeatureFlag = @"welcomepage.enabled";
 
     urlProps[@"config"] = config;
     props[@"url"] = urlProps;
-
+    
+    if (_currentLocale != nil) {
+        props[@"locale"] = _currentLocale;
+    }
+    
     return props;
 }
 

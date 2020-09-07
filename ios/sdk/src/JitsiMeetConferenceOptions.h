@@ -68,6 +68,8 @@
  */
 @property (nonatomic, nullable) JitsiMeetUserInfo *userInfo;
 
+@property (nonatomic, copy, nullable) NSString *currentLocale;
+
 - (void)setFeatureFlag:(NSString *_Nonnull)flag withBoolean:(BOOL)value;
 - (void)setFeatureFlag:(NSString *_Nonnull)flag withValue:(id _Nonnull)value;
 
@@ -91,6 +93,7 @@
 @property (nonatomic, readonly) BOOL welcomePageEnabled;
 
 @property (nonatomic, nullable) JitsiMeetUserInfo *userInfo;
+@property (nonatomic, copy, nullable, readonly) NSString *currentLocale;
 
 + (instancetype _Nonnull)fromBuilder:(void (^_Nonnull)(JitsiMeetConferenceOptionsBuilder *_Nonnull))initBlock;
 - (instancetype _Nonnull)init NS_UNAVAILABLE;

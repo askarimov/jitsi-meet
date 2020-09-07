@@ -201,7 +201,13 @@ const _LANGUAGES = {
 
     // Mongolian
     'mn': { languages: require('../../../../lang/languages-mn'),
-        main: require('../../../../lang/main-mn') }
+        main: require('../../../../lang/main-mn') 
+    },
+
+    // Kazakh
+    'kk': { languages: require('../../../../lang/languages-kk'),
+        main: require('../../../../lang/main-kk') 
+    }
 };
 
 // Register all builtin languages with the i18n library.
