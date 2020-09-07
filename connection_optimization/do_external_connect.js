@@ -35,7 +35,7 @@ if (typeof createConnectionExternally === 'function') {
         if (token) {
             url += `&token=${token}`;
         }
-
+        console.warn(url);
         createConnectionExternally(
             url,
             connectionInfo => {
