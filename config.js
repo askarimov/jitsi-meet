@@ -100,6 +100,14 @@ var config = {
     // participants and to enable it back a reload is needed.
     // startSilent: false
 
+    // Sets the preferred target bitrate for the Opus audio codec by setting its
+    // 'maxaveragebitrate' parameter. Currently not available in p2p mode.
+    // Valid values are in the range 6000 to 510000
+    // opusMaxAverageBitrate: 20000,
+
+    // Enables redundancy for Opus
+    // enableOpusRed: false
+
     // Video
 
     // Sets the preferred resolution (height) for local video. Defaults to 720.
@@ -264,8 +272,8 @@ var config = {
     // UI
     //
 
-    // Use display name as XMPP nickname.
-    // useNicks: false,
+    // Hides lobby button
+    // hideLobbyButton: false,
 
     // Require users to always specify a display name.
     // requireDisplayName: true,
