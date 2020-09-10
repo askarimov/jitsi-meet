@@ -80,7 +80,7 @@
         "installExtensionText": "Установите расширение для интеграции с Google Календарь и Office 365"
     },
     "connectingOverlay": {
-        "joiningRoom": "Пытаемся присоединиться к вашей конференции..."
+        "joiningRoom": "В процессе присоединения к видеоконференции..."
     },
     "connection": {
         "ATTACHED": "Прикреплено",
