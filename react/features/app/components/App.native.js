@@ -5,7 +5,7 @@ import React from 'react';
 import { setColorScheme } from '../../base/color-scheme';
 import { DialogContainer } from '../../base/dialog';
 import { updateFlags } from '../../base/flags/actions';
-import { CALL_INTEGRATION_ENABLED, SERVER_URL_CHANGE_ENABLED } from '../../base/flags/constants';
+import { CALL_INTEGRATION_ENABLED, SERVER_URL_CHANGE_ENABLED, CURRENT_LOCALE } from '../../base/flags/constants';
 import { getFeatureFlag } from '../../base/flags/functions';
 import { Platform } from '../../base/react';
 import { DimensionsDetector, clientResized } from '../../base/responsive-ui';
@@ -14,6 +14,7 @@ import logger from '../logger';
 
 import { AbstractApp } from './AbstractApp';
 import type { Props as AbstractAppProps } from './AbstractApp';
+import { i18next } from '../../base/i18n';
 
 // Register middlewares and reducers.
 import '../middlewares';
@@ -83,13 +84,22 @@ export class App extends AbstractApp {
      */
     componentDidMount() {
         super.componentDidMount();
-
         this._init.then(() => {
             const { dispatch, getState } = this.state.store;
+            console.log('App native js: did mount with props: ' + this.props.flags)
 
             // We set these early enough so then we avoid any unnecessary re-renders.
             dispatch(setColorScheme(this.props.colorScheme));
             dispatch(updateFlags(this.props.flags));
+
+            const currentLocale = getFeatureFlag(getState(), CURRENT_LOCALE, 'kk');
+            console.log('Change locale to FF ' + currentLocale);
+            if (currentLocale !== 'undefined') {
+                i18next.changeLanguage(currentLocale, (err, t) => {
+                    if (err) return console.log('something went wrong loading', err);
+                    t('key'); // -> same as i18next.t
+                });
+            }
 
             // Check if serverURL is configured externally and not allowed to change.
             const serverURLChangeEnabled = getFeatureFlag(getState(), SERVER_URL_CHANGE_ENABLED, true);

@@ -26,7 +26,6 @@
 #import "Types.h"
 #import "ViewController.h"
 
-
 @implementation ViewController
 
 - (void)viewDidLoad {
@@ -35,7 +34,9 @@
     JitsiMeetView *view = (JitsiMeetView *) self.view;
     view.delegate = self;
 
-    [view join:[[JitsiMeet sharedInstance] getInitialConferenceOptions]];
+    JitsiMeetConferenceOptions *defaultOptions = [[JitsiMeet sharedInstance] defaultConferenceOptions];
+    
+    [view join:defaultOptions];
 }
 
 // JitsiMeetViewDelegate
