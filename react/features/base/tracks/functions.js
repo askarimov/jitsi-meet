@@ -1,7 +1,7 @@
 /* global APP */
 
 import JitsiMeetJS, { JitsiTrackErrors, browser } from '../lib-jitsi-meet';
-import { MEDIA_TYPE, setAudioMuted } from '../media';
+import { MEDIA_TYPE, VIDEO_TYPE, setAudioMuted } from '../media';
 import {
     getUserSelectedCameraDeviceId,
     getUserSelectedMicDeviceId
@@ -440,4 +440,39 @@ export function setTrackMuted(track, muted) {
             logger.error(`set track ${f} failed`, error);
         }
     });
+}
+
+/**
+ * Checks if the local video track is of type DESKtOP.
+ *
+ * @param {Object} state - The redux state.
+ * @returns {boolean}
+ */
+ export function isLocalVideoTrackDesktop(state) {
+    const videoTrack = getLocalVideoTrack(state['features/base/tracks']);
+
+    return videoTrack && videoTrack.videoType === VIDEO_TYPE.DESKTOP;
+}
+
+/**
+ * Checks if the local video camera track in the given set of tracks is muted.
+ *
+ * @param {Track[]} tracks - List of all tracks.
+ * @returns {Track[]}
+ */
+ export function isLocalCameraTrackMuted(tracks) {
+    const presenterTrack = getLocalTrack(tracks, MEDIA_TYPE.PRESENTER);
+    const videoTrack = getLocalTrack(tracks, MEDIA_TYPE.VIDEO);
+
+    // Make sure we check the mute status of only camera tracks, i.e.,
+    // presenter track when it exists, camera track when the presenter
+    // track doesn't exist.
+    if (presenterTrack) {
+        return isLocalTrackMuted(tracks, MEDIA_TYPE.PRESENTER);
+    } else if (videoTrack) {
+        return videoTrack.videoType === 'camera'
+            ? isLocalTrackMuted(tracks, MEDIA_TYPE.VIDEO) : true;
+    }
+
+    return true;
 }

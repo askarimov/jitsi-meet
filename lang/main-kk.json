@@ -820,7 +820,7 @@
         "stopvideoblur": "Фонның көмескілігін өшіру",
         "talkWhileMutedPopup": "Сөйлемексіз бе? Дыбысыңыз өшірулі тұр.",
         "tileViewToggle": "Тақтайшаны қосу/өшіру",
-        "toggleCamera": "Камераны қосу/өшіру",
+        "toggleCamera": "Камераны ауыстырып қосу",
         "videomute": "Камера"
     },
     "transcribing": {
